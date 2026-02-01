@@ -101,12 +101,17 @@ void DoublyLinkedList<Type>::insertFirst(const Type& newItem){
     //TODO: COMPLETE THIS FUNCTION!
     NodeType<Type>* newNode = new NodeType<Type>;
     newNode->data = newItem;
-    newNode->prev = nullptr;    
+    newNode->prev = nullptr;
+    newNode->next = nullptr;
 
-    if (head != nullptr) {
+    if (this->head != nullptr) {
         this->head->prev = newNode;
+        newNode->next = head;
     }
-    newNode->next = head;
+    if (this->tail == nullptr) {
+    
+        this->tail = newNode;
+    }
     this->head = newNode;
     this->count++;
 }
