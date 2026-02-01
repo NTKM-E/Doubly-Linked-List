@@ -108,6 +108,7 @@ void DoublyLinkedList<Type>::insertFirst(const Type& newItem){
     }
     newNode->next = head;
     this->head = newNode;
+    this->count++;
 }
 
 template <class Type>
@@ -126,20 +127,21 @@ void DoublyLinkedList<Type>::insertLast(const Type& newItem){
     }
     
     this->tail = newNode;
+    this->count++;
 
 }
 
 template <class Type>
 void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
     
-    if (index > count) {
+    if (index > count-1) {
     
         cout << "Index is too high, not inserted, please use insert at tail or use an index until "<< this->count << "to insert before the tail!" << endl;
         return;
     }
     if (index < 0) {
 
-        cout << "Index is too low, not inserted, please use insert at head or use 0 to insert at head"<< endl;
+        cout << "Index is too low, not inserted, please use insert at head or use  index 0 to insert at head"<< endl;
         return;
     }
     NodeType<Type>* newNode = new NodeType<Type>;
@@ -173,7 +175,33 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
 
 template <class Type>
 Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
-    //TODO: COMPLETE THIS FUNCTION!
+
+        if (index > count-1) {
+
+            cout << "Index is too high, Not replaced" << endl;
+            return Type();
+            //because it returns a type i need to return something, I looked online an
+        }
+        if (index < 0) {
+
+            cout << "Index is too low, Not replaced" << endl;
+            return Type();
+        }
+    NodeType<Type>* current;
+    current = this->head;
+    int currentIndex = 0;
+    Type data;
+
+
+    while (current != nullptr && currentIndex != index)
+    {
+        current = current->next;
+        currentIndex++;
+    }
+    
+    data = current->data;
+    current->data = newItem;
+    return data; 
 
 }
 
