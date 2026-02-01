@@ -117,6 +117,7 @@ void DoublyLinkedList<Type>::insertLast(const Type& newItem){
     NodeType<Type>* newNode = new NodeType<Type>;
     newNode->data = newItem;
     newNode->next = nullptr;
+    newNode->prev = nullptr;
 
     if (tail != nullptr) {
         newNode->prev = tail;
@@ -148,6 +149,13 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
     newNode->data = newItem;
     NodeType<Type>* current;
     current = this->head;
+
+    if (current == nullptr) {
+        cout << "List has no head, please create one" << endl;
+        return;
+
+    }
+
     int currentIndex=0;
     // I am assuming the index starts from 0!
     
@@ -189,6 +197,11 @@ Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
         }
     NodeType<Type>* current;
     current = this->head;
+    if (current == nullptr) {
+        cout << "List has no head, please create one" << endl;
+        return Type();
+
+    }
     int currentIndex = 0;
     Type data;
 
