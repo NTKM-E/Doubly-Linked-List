@@ -99,17 +99,46 @@ template <class Type>
 void DoublyLinkedList<Type>::insertFirst(const Type& newItem){
     
     //TODO: COMPLETE THIS FUNCTION!
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
+    newNode->prev = nullptr;    
+
+    if (head != nullptr) {
+        this->head->prev = newNode;
+    }
+    newNode->next = head;
+    this->head = newNode;
 }
 
 template <class Type>
 void DoublyLinkedList<Type>::insertLast(const Type& newItem){
     //TODO: COMPLETE THIS FUNCTION!
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
+    newNode->next = nullptr;
+
+    if (tail != nullptr) {
+        newNode->prev = tail;
+        this->tail->next = newNode;
+    }
+    else {
+        this->head = newNode;
+    }
+    
+    this->tail = newNode;
 
 }
 
 template <class Type>
 void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
-    //TODO: COMPLETE THIS FUNCTION!
+    
+    NodeType<Type>* current;
+    current = this->head;
+    while (current != nullptr)
+    {
+        cout << current->data << " ";
+        current = current->next;
+    }
 }
 
 template <class Type>
