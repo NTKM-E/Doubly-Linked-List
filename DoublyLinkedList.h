@@ -218,9 +218,54 @@ Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
 template <class Type>
 void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     //TODO: COMPLETE THIS FUNCTION!
-    NodeType<Type>* newNode = new NodeType<Type>;
-    newNode->next = nullptr;
-    newNode->prev = nullptr;
+    //Function to delete deleteItem from the list.
+    //Postcondition: If found, the node containing
+    //               deleteItem is deleted from the list
+    //               and count is decremented by 1.
+
+    NodeType<Type>* current;
+    current = this->head;
+
+    while (current != nullptr)
+        if (current->data == deleteItem) {
+
+            if (current == this->head) {
+                if (current->next == nullptr) {
+                    destroyList();
+                    this->count--;
+                    return;
+                }
+                current->next->prev = nullptr;
+                this->head = current->next;
+                current->next = nullptr;
+                this->count--;
+                return;
+            
+            }
+            
+            if (current == this->tail) {
+                current->prev->next = nullptr;
+                this->tail = current->prev;
+                current->prev = nullptr;
+                this->count--;
+                return;
+
+            }
+
+                current->prev->next = current->next;
+                current->next->prev = current->prev;
+                current->next = nullptr;
+                current->prev = nullptr;
+                this->count--;
+                return;
+        
+        }
+
+        else {
+            current = current->next;
+        }
+    cout << "Unable to find target, nothing was deleted" << endl;
+    return;
 
 
 }
