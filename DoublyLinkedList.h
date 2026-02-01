@@ -132,13 +132,43 @@ void DoublyLinkedList<Type>::insertLast(const Type& newItem){
 template <class Type>
 void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
     
+    if (index > count) {
+    
+        cout << "Index is too high, not inserted, please use insert at tail or use an index until "<< this->count << "to insert before the tail!" << endl;
+        return;
+    }
+    if (index < 0) {
+
+        cout << "Index is too low, not inserted, please use insert at head or use 0 to insert at head"<< endl;
+        return;
+    }
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->data = newItem;
     NodeType<Type>* current;
     current = this->head;
-    while (current != nullptr)
+    int currentIndex=0;
+    // I am assuming the index starts from 0!
+    
+
+    while (current != nullptr && currentIndex != index)
     {
-        cout << current->data << " ";
         current = current->next;
+        currentIndex++;
     }
+    newNode->next = current;
+    
+    if (current->prev != nullptr) {
+        newNode->prev = current->prev;
+        newNode->prev->next = newNode;
+    }
+    else {
+        //if at head
+        newNode->prev = nullptr;
+        this->head = newNode;
+    }
+    newNode->next->prev = newNode;
+    this->count++;
+
 }
 
 template <class Type>
