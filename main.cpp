@@ -10,10 +10,10 @@
 #include <iostream>
 #include <cstdlib>
 #include "DoublyLinkedList.h"
- 
+
 using namespace std;
 
-bool testInsertFirst(){
+bool testInsertFirst() {
     cout << "Testing insertFirst" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertFirst(3);
@@ -28,7 +28,7 @@ bool testInsertFirst(){
     return true;
 }
 
-bool testInsertLast(){
+bool testInsertLast() {
     cout << "Testing insertLast" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertLast(7);
@@ -43,7 +43,7 @@ bool testInsertLast(){
     return true;
 }
 
-bool testFirstLast1(){
+bool testFirstLast1() {
     cout << "Testing insertFirst and insertLast" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertFirst(100);
@@ -60,7 +60,7 @@ bool testFirstLast1(){
     return true;
 }
 
-bool testFirstLast2(){
+bool testFirstLast2() {
     cout << "Testing insertLast and insertFirst" << endl;
     DoublyLinkedList<double> exampleList;
     exampleList.insertLast(2.1);
@@ -75,7 +75,7 @@ bool testFirstLast2(){
     return true;
 }
 
-bool testInsertNode(){
+bool testInsertNode() {
     cout << "Testing insertNode" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertNode(320, 0);
@@ -83,7 +83,7 @@ bool testInsertNode(){
     exampleList.insertNode(330, 2);
     exampleList.insertLast(340);
     exampleList.insertNode(315, 1);
-        
+
     exampleList.insertNode(335, 4);
     cout << "Forward Print Expected Output: 310 315 320 330 335 340" << endl;
     exampleList.print(true);
@@ -93,7 +93,7 @@ bool testInsertNode(){
     return true;
 }
 
-bool testDeleteNode(){
+bool testDeleteNode() {
     cout << "Testing deleteNode" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertFirst(310);
@@ -104,8 +104,8 @@ bool testDeleteNode(){
     exampleList.insertLast(340);
     cout << "Starting List: 310 315 320 330 335 340" << endl;
     exampleList.print(true);
-    
-    
+
+
     //test delete from middle
     exampleList.deleteNode(315);
     assert(!exampleList.search(315));
@@ -126,12 +126,12 @@ bool testDeleteNode(){
     exampleList.print(true);
     cout << "Reverse Print Expected Output: 330 320" << endl;
     exampleList.print(false);
-    
+
     exampleList.destroyList();
     return true;
 }
 
-bool testDeleteNodeAtIndex(){
+bool testDeleteNodeAtIndex() {
     /* cout << "Testing deleteNode" << endl;
      DoublyLinkedList<double> exampleList;
     exampleList.insertFirst(4.5);
@@ -141,7 +141,7 @@ bool testDeleteNodeAtIndex(){
     exampleList.insertFirst(4.1);
     cout << "Starting List: 4.1 4.2 4.3 4.4 4.5" << endl;
     exampleList.print(true);
-    
+
     exampleList.deleteNodeAtIndex(3);
     exampleList.deleteNodeAtIndex(1);
     exampleList.deleteNodeAtIndex(0);
@@ -152,12 +152,12 @@ bool testDeleteNodeAtIndex(){
     cout << "--- Testing error cases --- " << endl;
     exampleList.deleteNodeAtIndex(6);
     exampleList.deleteNodeAtIndex(-1);
-    
+
     exampleList.destroyList();*/
     return true;
 }
 
-bool testErrorMessages(){
+bool testErrorMessages() {
     cout << "Testing Error Messages" << endl;
     DoublyLinkedList<int> exampleList;
     exampleList.insertFirst(310);
@@ -168,7 +168,7 @@ bool testErrorMessages(){
     exampleList.insertLast(340);
     cout << "Starting List: 310 315 320 330 335 340" << endl;
     exampleList.print(true);
-    
+
     cout << "TEST --- Insert node test with index too big" << endl;
     exampleList.insertNode(370, 7);
     cout << "TEST --- Insert node test with index too small" << endl;
@@ -176,7 +176,7 @@ bool testErrorMessages(){
     cout << "TEST --- Delete node that isn't in list" << endl;
     exampleList.deleteNode(500);
     exampleList.destroyList();
-    
+
     cout << "TEST --- Delete node from empty list" << endl;
     exampleList.deleteNode(500);
     return true;
@@ -185,33 +185,33 @@ bool testErrorMessages(){
 int main()
 {
     DoublyLinkedList<int> exampleList;
-    
+
     //cout << "--- Beginning Tests of insert functions --- " << endl;
-    if(testInsertFirst()){
+    if (testInsertFirst()) {
         cout << "insertFirst tests finished";
         cout << "\n\n";
     }
-    
-    if(testInsertLast()){
+
+    if (testInsertLast()) {
         cout << "insertLast tests finished";
         cout << "\n\n";
     }
-    
+
     if (testFirstLast1() && testFirstLast2()) {
         cout << "First and Last combination tests finished";
         cout << "\n\n";
     }
-    
-    if(testInsertNode()){
+
+    if (testInsertNode()) {
         cout << "insertNode tests finished";
         cout << "\n\n";
     }
-    
-    if(testDeleteNode()){
+
+    if (testDeleteNode()) {
         cout << "deleteNode tests finished";
         cout << "\n\n";
     }
-    
+
     ///// Test delete node by index for pairs
     /*
      if(testDeleteNodeAtIndex()) {
@@ -219,11 +219,11 @@ int main()
          cout << "\n\n";
      }
      */
-    
+
     testErrorMessages();
-    
+
     cout << "All tests executed\n";
-    
+
     return 0;
 }
 
