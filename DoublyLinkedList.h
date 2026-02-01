@@ -149,9 +149,14 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
         return;
     }
     if (index >(this->count)) {
-        cout << "Index is too big, trying to insert at index"<<index<< "When there is only "<< this->count<<"item/s" << endl;
+        cout << "Index is too big, trying to insert at index "<<index<< "When there is only "<< this->count<<" item/s" << endl;
         return;
     
+    }
+    if (index < (0)) {
+        cout << "Index is too small, trying to insert at index " << index << endl;
+        return;
+
     }
     
     NodeType<Type>* newNode = new NodeType<Type>;
@@ -223,8 +228,14 @@ void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     //               deleteItem is deleted from the list
     //               and count is decremented by 1.
 
+
     NodeType<Type>* current;
     current = this->head;
+    if(current == nullptr){
+        cout << "List is empty, nothing was deleted" << endl;
+        return;
+    
+    }
 
     while (current != nullptr)
         if (current->data == deleteItem) {
