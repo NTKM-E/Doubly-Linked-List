@@ -139,50 +139,42 @@ void DoublyLinkedList<Type>::insertLast(const Type& newItem){
 
 template <class Type>
 void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
-    
-    if (index > count-1) {
-    
-        cout << "Index is too high, not inserted, please use insert at tail or use an index until "<< this->count << "to insert before the tail!" << endl;
+    if (this->head == nullptr || index == 0) {
+        insertFirst(newItem);
         return;
-    }
-    if (index < 0) {
 
-        cout << "Index is too low, not inserted, please use insert at head or use  index 0 to insert at head"<< endl;
+    }
+    if (index == count) {
+        insertLast(newItem);
         return;
     }
+    if (index >(this->count)) {
+        cout << "Index is too big, trying to insert at index"<<index<< "When there is only "<< this->count<<"item/s" << endl;
+        return;
+    
+    }
+    
     NodeType<Type>* newNode = new NodeType<Type>;
     newNode->data = newItem;
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
+
     NodeType<Type>* current;
-    current = this->head;
-
-    if (current == nullptr) {
-        cout << "List has no head, please create one" << endl;
-        return;
-
-    }
-
-    int currentIndex=0;
-    // I am assuming the index starts from 0!
     
+    current = this->head;
+    int currentIndex=0;
 
-    while (current != nullptr && currentIndex != index)
-    {
+    while (current->next != nullptr && currentIndex != index) {
         current = current->next;
         currentIndex++;
     }
     newNode->next = current;
-    
-    if (current->prev != nullptr) {
-        newNode->prev = current->prev;
-        newNode->prev->next = newNode;
-    }
-    else {
-        //if at head
-        newNode->prev = nullptr;
-        this->head = newNode;
-    }
-    newNode->next->prev = newNode;
+    newNode->prev = current->prev;
+    current->prev->next = newNode;
+    current->prev = newNode;
     this->count++;
+
+
 
 }
 
@@ -226,6 +218,10 @@ Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
 template <class Type>
 void DoublyLinkedList<Type>::deleteNode(const Type& deleteItem){
     //TODO: COMPLETE THIS FUNCTION!
+    NodeType<Type>* newNode = new NodeType<Type>;
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
+
 
 }
 
