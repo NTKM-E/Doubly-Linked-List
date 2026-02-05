@@ -186,7 +186,7 @@ void DoublyLinkedList<Type>::insertNode(const Type& newItem, int index){
 template <class Type>
 Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
 
-        if (index > count-1) {
+        if (index > count) {
 
             cout << "Index is too high, Not replaced" << endl;
             return Type();
@@ -197,6 +197,7 @@ Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
             cout << "Index is too low, Not replaced" << endl;
             return Type();
         }
+
     NodeType<Type>* current;
     current = this->head;
     if (current == nullptr) {
@@ -208,7 +209,7 @@ Type DoublyLinkedList<Type>::replace(const Type& newItem, int index){
     Type data;
 
 
-    while (current != nullptr && currentIndex != index)
+    while (current->next != nullptr && currentIndex != index)
     {
         current = current->next;
         currentIndex++;

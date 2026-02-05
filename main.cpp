@@ -93,6 +93,30 @@ bool testInsertNode() {
     return true;
 }
 
+bool testReplace() {
+    cout << "Testing replace" << endl;
+    DoublyLinkedList<int> exampleList;
+    exampleList.insertNode(320, 0);
+    exampleList.insertNode(310, 0);
+    exampleList.insertNode(330, 2);
+    exampleList.insertLast(340);
+    exampleList.insertNode(315, 1);
+
+    cout<<"Changed value" << exampleList.replace(335, 2) << endl;
+    cout << "Changed value" << exampleList.replace(350, 6) << endl;
+    cout << "Changed value" << exampleList.replace(300, 0) << endl;
+    cout << "Changed value" << exampleList.replace(345, 5) << endl;
+
+
+
+    cout << "Forward Print Expected Output: 300 315 335 330 345" << endl;
+    exampleList.print(true);
+    cout << "Reverse Print Expected Output: 345 330 335 315 300" << endl;
+    exampleList.print(false);
+    exampleList.destroyList();
+    return true;
+}
+
 bool testDeleteNode() {
     cout << "Testing deleteNode" << endl;
     DoublyLinkedList<int> exampleList;
@@ -204,6 +228,10 @@ int main()
 
     if (testInsertNode()) {
         cout << "insertNode tests finished";
+        cout << "\n\n";
+    }
+    if (testReplace()) {
+        cout << "replace tests finished";
         cout << "\n\n";
     }
 
